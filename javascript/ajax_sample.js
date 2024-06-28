@@ -1,15 +1,32 @@
+let number = 0;
+let data = [];
+const button = document.getElementById('btn');
+const titleArea = document.getElementById("title");
+const videoArea = document.getElementById("video");
+
 function getData() {
-    const request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState == 4) {
-            if (request.status == 200) {
-                console.log(request.response);
-            }
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'javascript/ajax.json', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            data = JSON.parse(xhr.responseText);
+            changeVideo();
         }
-    }
-    request.open("GET", "ajax.json"); // --1
-    request.responseType = "json"; // --2
-    request.send(null);
+    };
+    xhr.send();
 }
 
-window.onload = getData;
+function changeVideo() {
+    if (data.length === 0) {
+        getData();
+    } else {
+        const videoData = data[number];
+        titleArea.textContent = videoData.title;
+        videoArea.src = videoData.url;
+        number = (number + 1) % data.length;
+    }
+}
+
+button.addEventListener('click', changeVideo);
+
+window.onload = changeVideo;

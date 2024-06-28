@@ -8,6 +8,9 @@
 
 <body>
     <button id="btn">change video</button>
+    <h1 id="title"></h1>
+    <iframe id="video" width="500" height="300" src="about:blank" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <style>
         #btn {
             padding: .8rem 2rem;
@@ -15,9 +18,15 @@
             border-radius: 5px;
             background: rgba(127, 136, 182, 1);
             color: white;
+            margin-bottom: 10px;
+            /* Añadido para espacio entre el botón y el título */
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            /* Añadido para espacio entre el título y el video */
         }
     </style>
-    <script type="text/javascript" src="javascript/ajax_sample.js"></script>
     <script type="text/javascript" src="javascript/ajax_sample.js"></script>
 </body>
 
